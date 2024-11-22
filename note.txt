@@ -1,59 +1,13 @@
 // to remove laravel log
-php -r "file_put_contents('/var/www/html/tiger_mm_a/storage/logs/laravel.log', '');"
+php -r "file_put_contents('/var/www/lka_demo_a/storage/logs/laravel.log', '');"
 // created dev branch for kzt
 
-tail -f /var/www/html/tiger_mm_a/storage/logs/laravel.log
+tail -f /var/www/html/lka_demo_a/storage/logs/laravel.log
 
 crontab -e
 
-* * * * * cd /var/www/html/bossi_a && php artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /var/www/lka_demo_a && php artisan schedule:run >> /dev/null 2>&1
 
 
 php artisan make:migration add_agent_link_to_users_table --table=users
 
-// to add column 
-ALTER TABLE transactions
-ADD COLUMN agent_id INT(11) AFTER name;
-
-
-sudo chmod -R 775 /var/www/html/tiger_mm_a/storage/logs/
-sudo chown -R www-data:www-data /var/www/html/bossi_a/storage/logs
-
-
-# Change ownership of storage and cache directories to the web server user (www-data)
-sudo chown -R www-data:www-data /var/www/html/tiger_mm_a/storage
-sudo chown -R www-data:www-data /var/www/html/tiger_mm_a/bootstrap/cache
-
-# Set correct permissions for the directories
-sudo chmod -R 775 /var/www/html/tiger_mm_a/storage
-sudo chmod -R 775 /var/www/html/tiger_mm_a/bootstrap/cache
-
-# Ensure the laravel.log file exists and has correct permissions
-sudo touch /var/www/html/tiger_mm_a/storage/logs/laravel.log
-sudo chown www-data:www-data /var/www/html/tiger_mm_a/storage/logs/laravel.log
-sudo chmod 664 /var/www/html/tiger_mm_a/storage/logs/laravel.log
-
-# Restart the web server
-sudo systemctl restart apache2  # For Apache
-sudo systemctl restart nginx    # For NGINX
-
-
-# Set the ownership of the entire project directory to www-data user and group
-chown -R www-data:www-data /var/www/html/bossi_a
-
-# Set directory permissions to allow access
-chmod -R 755 /var/www/html/bossi_a
-
-# Ensure storage directory is owned by www-data
-sudo chown -R www-data:www-data /var/www/html/bossi_a/storage
-
-# Ensure bootstrap cache directory is owned by www-data
-sudo chown -R www-data:www-data /var/www/html/bossi_a/bootstrap/cache
-
-# Set correct permissions for storage directory
-sudo chmod -R 775 /var/www/html/bossi_a/storage
-
-# Set correct permissions for bootstrap cache directory
-sudo chmod -R 775 /var/www/html/bossi_a/bootstrap/cache
-ls -al /var/www/html/bossi_a
-sudo systemctl restart nginx

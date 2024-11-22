@@ -188,7 +188,7 @@
     <script>
         var errorMessage = @json(session('error'));
         var successMessage = @json(session('success'));
-        var url = 'https://tigermm.online/login';
+        var url = 'https://theonemmslot.online/login';
         var name = @json(session('username'));
         var pw = @json(session('password'));
         var deposit_amount = @json(session('amount'));
@@ -245,7 +245,7 @@
             var password = $('#tpassword').text();
             var tdeposit = $('#tdeposit').text();
             var copy = "url : " + url + "\nusername : " + username + "\npw : " + password + "\nTransfer Amount :" +
-            tdeposit;
+                tdeposit;
             copyToClipboard(copy)
         }
 
