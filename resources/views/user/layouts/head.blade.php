@@ -26,7 +26,8 @@
     @yield('style')
     <style>
         #main {
-            background-image: url('https://paradoxcat.com/wp-content/uploads/2021/06/img_pdx_header_ai.jpg');
+            /* background-image: url('https://paradoxcat.com/wp-content/uploads/2021/06/img_pdx_header_ai.jpg'); */
+            background-image: asset('assets/img/bg.jfif');
             /* background: #000; */
             min-height: 100vh;
             background-repeat: no-repeat;
